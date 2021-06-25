@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>学生个人信息</title>
+
+    <link href="../static/news/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/news/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="../static/news/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="../static/news/css/animate.css" rel="stylesheet">
+    <link href="../static/news/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/iconfont.css">
+</head>
+<style>
+    .contentBox {
+        width: 896px;
+        margin: auto;
+        border-top: 1px solid #b7bbbf;
+        position: relative;
+        top: 69px;
+        padding-top: 28px;
+}
+    .setting {
+        background-color: #fff;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+        width: 960px;
+        height: 780px;
+        margin: -40px auto auto;
+        overflow: hidden;
+}
+
+    .setting-profile .wlfg-wrap .rlf-btn-green:hover {
+        background-color: #33a646;
+}
+    .setting-profile .wlfg-wrap .rlf-btn-green {
+    background-color: #00b33b;
+    border-radius: 2px;
+}
+    .setting-profile .wlfg-wrap .profile-btn {
+    display: block;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    width: 96px;
+    height: 40px;
+}
+</style>
+<body>
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="../static/portrait/{{ pic_data }}" width="48" height="48" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ username }}</strong>
+                             </span> <span class="text-muted text-xs block">{{identity}} <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="user_data_admin.html">个人信息</a></li>
+                                <li class="divider"></li>
+                                <li><a href="login.html">登出</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/"><i class="fa fa-th-large"></i> <span class="nav-label">首页</span> </a>
+                    </li>
+                    <li>
+                        <a href="baodao_admin.html"><span class="iconfont icon-xinwen"></span> <span class="nav-label">最新报导</span> </a>
+                    </li>
+                    <li>
+                        <a href="jiankang_admin.html"><span class="iconfont icon-meirijiankang1"></span> <span class="nav-label">每日健康</span> </a>
+                    </li>
+                    <li>
+                        <a href="tongzhi_admin.html"> <span class="iconfont icon-tongzhi"></span><span class="nav-label">通知发布</span> </a>
+                    </li>
+                    <li>
+                        <a href="waichu_admin.html"> <span class="iconfont icon-waichu2"></span><span class="nav-label">请假审批</span> </a>
+                    </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+        </nav>
+        </div>
+            <div class="setting pb10">
+            <div class="contentBox">
+                <div class="formBox">
+                    <div id="setting-profile" class="setting-wrap setting-profile">
+
+                        <div class="wlfg-wrap clearfix ">
+                            <label class="label-name" for="job">头像：</label>
+
+                            <div class="rlf-group">
+                                <img id="avatar_img" src="../static/portrait/{{ pic_data }}" style="border-radius:50%" width="180" height="180">
+                                <div class="fl ml20 pr">
+                                    <div id="avator-btns" class="avator-btn-inner">
+                                        <div class="avator-btn-wrap">
+                                            <form target="uploadtarget" action="postpic" method="post" enctype="multipart/form-data">
+                                                <input id="avatar_file" type="file" accept="image/*" name="avatar">
+                                            </form>
+{#                                            <iframe src="about:blank" id="uploadtarget" name="uploadtarget" frameborder="0" style="display:none;"></iframe>#}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cb"></div>
+                                <p class="rlf-tip-wrap errorHint color-red" ></p>
+                            </div>
+                        </div>
+
+                        <form id="profile" >
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >姓名：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="nickname" id="nick"  autocomplete="off"  class="moco-form-control" value="{{ username }}"/></div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >班级：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="text" name="grades" id="grades" autocomplete="off"  class="moco-form-control" value="{{ grades }}"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >居住地：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="text" name="address" id="address"  class="moco-form-control" value="{{ address }}"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >学号：</label>
+                                <div class="rlf-group">
+                                    <p class="rlf-tip-wrap errorHint color-red" >{{ userid }}</p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >身份：</label>
+                                <div class="rlf-group">
+                                    <p class="rlf-tip-wrap errorHint color-red" >{{ identity }}</p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >专业：</label>
+                                <div class="rlf-group">
+                                    <p class="rlf-tip-wrap errorHint color-red" >{{ major }}</p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >健康状态：</label>
+                                <div class="rlf-group">
+                                    <p class="rlf-tip-wrap errorHint color-red" >{{ healths }}</p>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="profile-submit"></label>
+                                <div class="rlf-group">
+                                    <span id="profile-submit" onclick="judge_infor()" hidefocus="true"  aria-role="button" class="rlf-btn-green btn-block profile-btn">保存</span>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="../static/news/js/jquery-3.1.1.min.js"></script>
+    <script src="../static/news/js/bootstrap.min.js"></script>
+    <script src="../static/news/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../static/news/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="../static/news/js/inspinia.js"></script>
+    <script src="../static/news/js/plugins/pace/pace.min.js"></script>
+
+    <script type="text/javascript" src="../static/js/common.js"></script>
+
+</body>
+
+</html>

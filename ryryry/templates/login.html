@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>登录</title>
+<link rel="stylesheet" href="../static/css/style.css">
+<body>
+
+<div class="login-container">
+	<h1>欢迎登录</h1>
+
+	<div class="connect">
+		<p>Link the world. Share to world.</p>
+	</div>
+
+	<form action="" method="post" id="loginForm">
+		<div>
+			<input type="text" name="userid" placeholder="学号"/>
+		</div>
+		<div>
+			<input type="password" name="password" placeholder="密码" oncontextmenu="return false" onpaste="return false" />
+		</div>
+		<button id="login-btn" type="button" method="post" onclick="judge()">登 录</button>
+	</form>
+
+	<a href="reg.html">
+		<button type="button" id="reg-btn" class="register-tis">还有没有账号？</button>
+	</a>
+
+</div>
+
+</body>
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script type="text/javascript">
+        document.body.addEventListener('keyup', function (e) {
+    if (e.keyCode == '13') {
+        $("#login-btn").click();
+        event.returnValue = false;
+    }
+});
+
+        </script>
+<!-- 引入jquery库，如果页面已经有其他版本的也行，不要重复引用 -->
+
+<!--自动更换背景图片用的一个插件-->
+<script src="../static/js/supersized.3.2.7.min.js"></script>
+
+{#<!-- 上面三个js不要改，下面才是我们自定义的 -->#}
+<script src="../static/js/common.js" charset= "UTF-8"></script>
+<!-- 背景图片更换配置 -->
+<script src="../static/js/supersized-init.js"></script>
+</html>

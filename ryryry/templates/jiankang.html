@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="JackieZheng">
+	<meta name="Keywords" content="2019-nCoV,肺炎,疫情,中华菊头蝠,冠状病毒,感染">
+	<meta name="Description" content="2019-nCoV 全国新型冠状病毒肺炎（NCP）疫情每日数据动态趋势">
+    <title>学生每日健康</title>
+
+    <link href="../static/news/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/news/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../static/news/css/index.css" rel="stylesheet">
+    <!-- Toastr style -->
+    <link href="../static/news/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <link href="../static/news/css/animate.css" rel="stylesheet">
+    <link href="../static/news/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/iconfont.css">
+	<script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+<style>
+        .contentBox {
+        width: 896px;
+        margin: auto;
+        border-top: 1px solid #b7bbbf;
+        position: relative;
+        top: 69px;
+        padding-top: 28px;
+}
+    .setting {
+        background-color: #fff;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+        width: 960px;
+        height: 780px;
+        margin: -40px auto auto;
+        overflow: hidden;
+}
+
+    .setting-profile .wlfg-wrap .rlf-btn-green:hover {
+        background-color: #33a646;
+}
+    .setting-profile .wlfg-wrap .rlf-btn-green {
+    background-color: #00b33b;
+    border-radius: 2px;
+}
+    .setting-profile .wlfg-wrap .profile-btn {
+    display: block;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    width: 96px;
+    height: 40px;
+}
+
+
+</style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" width="48" height="48" src="../static/portrait/{{ pic_data }}" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ username }}</strong>
+                             </span> <span class="text-muted text-xs block">{{ identity }} <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="user_data.html">个人信息</a></li>
+                                <li class="divider"></li>
+                                <li><a href="login.html">登出</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/"><i class="fa fa-th-large"></i> <span class="nav-label">首页</span> </a>
+                    </li>
+                    <li>
+                        <a href="baodao.html"><span class="iconfont icon-xinwen"></span> <span class="nav-label">最新报导</span> </a>
+                    </li>
+                    <li class="active">
+                        <a href="jiankang.html"><span class="iconfont icon-meirijiankang1"></span> <span class="nav-label">每日健康</span> </a>
+                    </li>
+                    <li>
+                        <a href="tongzhi.html"> <span class="iconfont icon-tongzhi"></span><span class="nav-label">通知咨询</span> </a>
+                    </li>
+                    <li>
+                        <a href="waichu.html"> <span class="iconfont icon-waichu2"></span><span class="nav-label">外出请假</span> </a>
+                    </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+        </nav>
+            </div>
+            <div class="setting pb10">
+            <div class="contentBox">
+                <div class="formBox">
+                    <div id="setting-profile" class="setting-wrap setting-profile">
+                        <form id="profile" >
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >学号：</label>
+                                <div class="rlf-group">
+                                    <input type="text" disabled="disabled" name="userid" id="nick"  autocomplete="off"  class="moco-form-control" value="{{ userid }}"/></div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >班级：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="text" name="grades" autocomplete="off"  class="moco-form-control" value="{{ grades }}"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >专业：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="text" name="major" autocomplete="off"  class="moco-form-control" value="{{ major }}"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >当前所在地：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="text" name="nowaddress" autocomplete="off"  class="moco-form-control" value="天津科技大学"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >联系方式：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="text" name="tel" autocomplete="off"  class="moco-form-control" value="{{ tel }}"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >体温：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="text" name="temperature" autocomplete="off"  class="moco-form-control"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >是否接触过疑似或确诊病例：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="radio"  name="potential1" value="是"/>是
+                                        <input id="woman" checked="checked" type="radio"  name="potential1" value="否"/>否
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >是否接触发热高危人员：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="radio"  name="potential2" autocomplete="off" value="是"/>是
+                                        <input id="woman" checked="checked" type="radio"  name="potential2" value="否"/>否
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >健康状态：</label>
+                                <div class="rlf-group">
+                                    <label>
+                                        <input type="text" name="healths"  class="moco-form-control" placeholder="填红/黄/绿"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="profile-submit"></label>
+                                <div class="rlf-group">
+                                    <span id="profile-submit" onclick="judge_health()" hidefocus="true"  aria-role="button" class="rlf-btn-green btn-block profile-btn">保存</span>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+        </div>
+
+{#    <script type="text/javascript" src="../static/news/js/jquery-3.1.1.min.js"></script>#}
+    <script type="text/javascript" src="../static/news/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../static/js/common.js"></script>
+
+
+
+</body>
+</html>

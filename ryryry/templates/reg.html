@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>注册</title>
+<link rel="stylesheet" href="../static/css/style.css">
+
+<body>
+
+	<div class="register-container">
+		<h1>ShareLink</h1>
+
+		<div class="connect">
+			<p>Link the world. Share to world.</p>
+		</div>
+
+		<form action="" method="post" id="registerForm">
+			<div>
+				<input type="text" name="id" class="username" placeholder="您的学号" autocomplete="off" />
+			</div>
+            <div>
+				<input type="text" name="username" class="username" placeholder="您的名字" autocomplete="off" />
+			</div>
+			<div>
+				<input type="password" name="password" class="password" placeholder="输入密码" oncontextmenu="return false"
+					onpaste="return false" />
+			</div>
+			<div>
+				<input type="password" name="confirm_password" class="confirm_password" placeholder="再次输入密码"
+					oncontextmenu="return false" onpaste="return false" />
+			</div>
+			<div>
+				<input type="text" name="tel" placeholder="输入手机号码"/>
+			</div>
+            <div>
+				<input  name="sex" class="sex" placeholder="输入性别"/>
+			</div>
+            <div>
+				<input  name="age" class="age" placeholder="输入年龄"/>
+			</div>
+            <div>
+				<input  name="address" class="address" placeholder="输入家庭地址"/>
+			</div>
+			<div>
+				<input type="email" name="email" class="email" placeholder="输入邮箱地址"/>
+			</div>
+            <div>
+				<input type="text" name="major" class="major" placeholder="输入专业"/>
+			</div>
+            <div>
+				<input type="text" name="sclass" placeholder="输入班级"/>
+			</div>
+			<button  type="button" onclick="judge_reg()">注 册</button>
+		</form>
+		<a href="login.html">
+			<button type="button" class="register-tis">已经有账号？</button>
+		</a>
+
+	</div>
+
+</body>
+<script src="https://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="../static/js/common.js" charset= "UTF-8"></script>
+<!--背景图片自动更换-->
+<script src="../static/js/supersized.3.2.7.min.js"></script>
+<script src="../static/js/supersized-init.js"></script>
+
+</html>

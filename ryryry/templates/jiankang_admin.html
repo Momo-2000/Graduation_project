@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="JackieZheng">
+	<meta name="Keywords" content="2019-nCoV,肺炎,疫情,中华菊头蝠,冠状病毒,感染">
+	<meta name="Description" content="2019-nCoV 全国新型冠状病毒肺炎（NCP）疫情每日数据动态趋势">
+    <title>管理员健康统计</title>
+
+    <link href="../static/news/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/news/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../static/news/css/index.css" rel="stylesheet">
+    <!-- Toastr style -->
+    <link href="../static/news/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <link href="../static/news/css/animate.css" rel="stylesheet">
+    <link href="../static/news/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/iconfont.css">
+
+	<script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+<style>
+    .healths_red{
+        background-color: #ff0000!important;
+    }
+    .healths_yellow{
+        background-color: #f5f502 !important;
+    }
+</style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" width="48" height="48" src="../static/portrait/{{ pic_data }}" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ username }}</strong>
+                             </span> <span class="text-muted text-xs block">{{ identity }} <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="user_data_admin.html">个人信息</a></li>
+                                <li class="divider"></li>
+                                <li><a href="login.html">登出</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/"><i class="fa fa-th-large"></i> <span class="nav-label">首页</span> </a>
+                    </li>
+                    <li>
+                        <a href="baodao_admin.html"><span class="iconfont icon-xinwen"></span> <span class="nav-label">最新报导</span> </a>
+                    </li>
+                    <li class="active">
+                        <a href="jiankang_admin.html"><span class="iconfont icon-meirijiankang1"></span> <span class="nav-label">每日健康</span> </a>
+                    </li>
+                    <li>
+                        <a href="tongzhi_admin.html"> <span class="iconfont icon-tongzhi"></span><span class="nav-label">通知发布</span> </a>
+                    </li>
+                    <li>
+                        <a href="waichu_admin.html"> <span class="iconfont icon-waichu2"></span><span class="nav-label">请假审批</span> </a>
+                    </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+        </nav>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>今日健康报备详情</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link" id="no_signinS" style="display: inline-table" onclick="signin_show()">
+                                <i>全体健康未报备详情（未打卡{{ signin_c | length }}人）</i>
+                            </a>
+                            <a class="collapse-link" id="no_signinV" style="display: none" onclick="signin_back()">
+                                <i>全体健康报备详情</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content" style="display: block">
+
+                        <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example" style="display: inline-table" id="baobeiS" >
+                    <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>日期</th>
+                        <th>专业</th>
+                        <th>班级</th>
+                        <th>所在地</th>
+                        <th>电话</th>
+                        <th>健康状态</th>
+                        <th>是否疑似接触病人</th>
+                        <th>体温</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for student in res %}
+                        {% if student['healths']=='红' %}
+                            <tr class="gradeU healths_red">
+                        <td class="center">{{ student['id'] }}</td>
+                        <td class="center">{{ student['date'] }}</td>
+                        <td class="center">{{ student['major'] }}</td>
+                        <td class="center">{{ student['class'] }}</td>
+                        <td class="center">{{ student['nowaddress'] }}</td>
+                        <td class="center">{{ student['tel'] }}</td>
+                        <td class="center">{{ student['healths'] }}</td>
+                        {% if student['potential']=='0' %}
+                            <td class="center">否</td>
+                        {% else %}
+                            <td class="center">是</td>
+                        {% endif %}
+                        {% if student['temperature']<36 or student['temperature']>37.5 %}
+                            <td class="center healths_yellow">{{ student['temperature'] }}</td>
+                        {% else %}
+                            <td class="center">{{ student['temperature'] }}</td>
+                        {% endif %}
+                    </tr>
+                        {% elif student['healths']=='黄'or student['potential']=='1' %}
+                            <tr class="gradeU healths_yellow">
+                        <td class="center">{{ student['id'] }}</td>
+                        <td class="center">{{ student['date'] }}</td>
+                        <td class="center">{{ student['major'] }}</td>
+                        <td class="center">{{ student['class'] }}</td>
+                        <td class="center">{{ student['nowaddress'] }}</td>
+                        <td class="center">{{ student['tel'] }}</td>
+                        <td class="center">{{ student['healths'] }}</td>
+                        {% if student['potential']=='0' %}
+                            <td class="center">否</td>
+                        {% else %}
+                            <td class="center">是</td>
+                        {% endif %}
+                        {% if student['temperature']<36 or student['temperature']>37.5 %}
+                            <td class="center healths_yellow">{{ student['temperature'] }}</td>
+                        {% else %}
+                            <td class="center">{{ student['temperature'] }}</td>
+                        {% endif %}
+                    </tr>
+                        {% else %}
+                            <tr class="gradeU">
+                        <td class="center">{{ student['id'] }}</td>
+                        <td class="center">{{ student['date'] }}</td>
+                        <td class="center">{{ student['major'] }}</td>
+                        <td class="center">{{ student['class'] }}</td>
+                        <td class="center">{{ student['nowaddress'] }}</td>
+                        <td class="center">{{ student['tel'] }}</td>
+                        <td class="center">{{ student['healths'] }}</td>
+                        {% if student['potential']=='0' %}
+                            <td class="center">否</td>
+                        {% else %}
+                            <td class="center">是</td>
+                        {% endif %}
+                        {% if student['temperature']<36 or student['temperature']>37.5 %}
+                            <td class="center healths_yellow">{{ student['temperature'] }}</td>
+                        {% else %}
+                            <td class="center">{{ student['temperature'] }}</td>
+                        {% endif %}
+                    </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                    </table>
+                        <table class="table table-striped table-bordered table-hover dataTables-example" style="display: none" id="baobeiV">
+                    <thead>
+                    <tr>
+                        <th>未打卡学号</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for student in signin_c %}
+                        <tr class="gradeU">
+                            <td class="center">{{ student }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+            </div>
+
+	</div>
+
+    <script src="../static/news/js/jquery-3.1.1.min.js"></script>
+    <script src="../static/news/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../static/js/common.js"></script>
+
+</body>
+</html>

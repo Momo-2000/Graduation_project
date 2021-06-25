@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="JackieZheng">
+	<meta name="Keywords" content="2019-nCoV,肺炎,疫情,中华菊头蝠,冠状病毒,感染">
+	<meta name="Description" content="2019-nCoV 全国新型冠状病毒肺炎（NCP）疫情每日数据动态趋势">
+    <title>超管</title>
+
+    <link href="../static/news/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/news/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../static/news/css/index.css" rel="stylesheet">
+    <!-- Toastr style -->
+    <link href="../static/news/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <link href="../static/news/css/animate.css" rel="stylesheet">
+    <link href="../static/news/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/iconfont.css">
+
+	<script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+
+<style>
+    .title-u{
+        font-size: 14px;
+        margin-bottom: -20px;
+        margin-left: -10px;
+        margin-right: -10px;
+
+    }
+    .contentBox {
+        width: 896px;
+        margin: auto;
+        border-top: 1px solid #b7bbbf;
+        position: relative;
+        top: 69px;
+        padding-top: 28px;
+}
+    .setting {
+        background-color: #fff;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+        width: 960px;
+        height: 780px;
+        margin: -40px auto auto;
+        overflow: hidden;
+}
+
+    .setting-profile .wlfg-wrap .rlf-btn-green:hover {
+        background-color: #33a646;
+}
+    .setting-profile .wlfg-wrap .rlf-btn-green {
+    background-color: #00b33b;
+    border-radius: 2px;
+}
+    .setting-profile .wlfg-wrap .profile-btn {
+    display: block;
+    color: #fff;
+    text-align: center;
+    line-height: 24px;
+    cursor: pointer;
+    width: 74px;
+    height: 25px;
+}
+</style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" width="48" height="48" src="../static/portrait/{{ pic_data }}" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ username }}</strong>
+                             </span> <span class="text-muted text-xs block">{{ identity }} </span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="user_data.html">个人信息</a></li>
+                                <li class="divider"></li>
+                                <li><a href="login.html">登出</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li class="active">
+                        <a href="/"><i class="fa fa-th-large"></i> <span class="nav-label">首页</span> </a>
+                    </li>
+            </ul>
+
+        </div>
+    </nav>
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+        </nav>
+        </div>
+            <div class="setting pb10">
+            <div class="contentBox">
+                <div class="formBox">
+                    <div id="setting-profile" class="setting-wrap setting-profile">
+                        <form id="profile" >
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" style="margin-bottom: 10px" for="nick" >添加管理员权限：</label>
+                                <div class="rlf-group">
+                                    <label style="margin-bottom: 10px;">
+                                        <input type="text" style="margin-bottom: 10px;" name="add_admin" id="address"  class="moco-form-control" value="{{ address }}"/>
+                                        <span id="profile-submit" onclick="add_admin()" class="rlf-btn-green btn-block profile-btn">提交</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" style="margin-bottom: 10px" for="nick" >删除管理员账号：</label>
+                                <div class="rlf-group">
+                                    <label style="margin-bottom: 10px;">
+                                        <input type="text" style="margin-bottom: 10px;" name="delete_admin" id="address"  class="moco-form-control" value="{{ address }}"/>
+                                        <span id="profile-submit" onclick="delete_admin()" class="rlf-btn-green btn-block profile-btn">提交</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name"  for="nick" >删除管理员权限：</label>
+                                <div class="rlf-group">
+                                    <label style="margin-bottom: 10px;">
+                                        <input type="text" style="margin-bottom: 10px;" name="down_admin" id="address"  class="moco-form-control" value="{{ address }}"/>
+                                        <span id="profile-submit" onclick="down_admin()" class="rlf-btn-green btn-block profile-btn">提交</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+
+        </div>
+<script type="text/javascript">
+    function down_admin(){
+        var down_admin = $("input[name='down_admin']").val();
+
+        if (down_admin==="") {
+            alert("请填写要下调权限的用户id")
+        }
+        else {
+            var formData = new FormData();
+            formData.append("down_admin",down_admin);
+            $.ajax({
+                url : "down_admin",
+                type : 'POST',
+                cache : false,
+                data : formData,
+                processData : false,
+                contentType : false,
+                success : function(request) {
+                    if (request.status==="0"){
+                        alert(request.msg);
+                        $("input[name=down_admin]").focus().val("");
+                    }
+                    else {
+                        alert(request.msg);
+                    }
+                }
+            });
+        }}
+    function add_admin(){
+        var add_admin = $("input[name='add_admin']").val();
+
+        if (add_admin==="") {
+            alert("请填写要提高权限的用户id")
+        }
+        else {
+            var formData = new FormData();
+            formData.append("add_admin",add_admin);
+            $.ajax({
+                url : "add_admin",
+                type : 'POST',
+                cache : false,
+                data : formData,
+                processData : false,
+                contentType : false,
+                success : function(request) {
+                    if (request.status==="0"){
+                        alert(request.msg);
+                        $("input[name=add_admin]").focus().val("");
+                    }
+                    else {
+                        alert(request.msg);
+                    }
+                }
+            });
+        }}
+    function delete_admin(){
+        var delete_admin = $("input[name='delete_admin']").val();
+
+        if (delete_admin==="") {
+            alert("请填写要删除的管理员账号")
+        }
+        else {
+            var formData = new FormData();
+            formData.append("delete_admin",delete_admin);
+            $.ajax({
+                url : "delete_admin",
+                type : 'POST',
+                cache : false,
+                data : formData,
+                processData : false,
+                contentType : false,
+                success : function(request) {
+                    if (request.status==="0"){
+                        alert(request.msg);
+                        $("input[name=delete_admin]").focus().val("");
+                    }
+                    else {
+                        alert(request.msg);
+                    }
+                }
+            });
+        }}
+</script>
+
+</body>
+</html>
