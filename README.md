@@ -1,6 +1,6 @@
 # Graduation_project
 ## This is my undergraduate graduation project
-Design and development of epidemic situation monitoring platform in Tianjin University of science and technology
+Design and development of epidemic situation monitoring system in Tianjin University of science and technology
 
 ## Background
 
